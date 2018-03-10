@@ -35,9 +35,16 @@ class Events:
             pass
 
     async def on_ready(self):
-        print(f'Ready: {self.bot.user} | Servers: {len(self.bot.guilds)}')
-        await self.bot.change_presence(activity=discord.Game(type=0, name=f"xa.help | on {len(self.bot.guilds)} servers!"), status=discord.Status.online)
+        print(f'Ready: {self.bot.user} | Guilds: {len(self.bot.guilds)}')
+        await self.bot.change_presence(activity=discord.Game(name=f"xa.help | on {len(self.bot.guilds)} servers!"))
+	
+    async def on_guild_join(self, guild):
+        print(f'I have joined a guild! | Guilds: {len(self.bot.guilds)}')
+        await self.bot.change_presence(activity=discord.Game(name=f"xa.help | on {len(self.bot.guilds)} servers!"))
 
+    async def on_guild_remove(self, guild):
+        print(f'I have been removed from a guild ;-; | Guilds: {len(self.bot.guilds)}')
+        await self.bot.change_presence(activity=discord.Game(name=f"xa.help | on {len(self.bot.guilds)} servers!"))
 
 def setup(bot):
     bot.add_cog(Events(bot))
