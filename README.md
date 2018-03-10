@@ -1,0 +1,2 @@
+# xaoni
+Xaoni Discord bot
